@@ -215,5 +215,5 @@ pip install -r requirements.txt
 
 ---
 
-Se quiser, eu adapto este README para um formato específico (por exemplo, README.md com badges, ou versão em inglês) ou gero o `requirements.txt` e os scripts prontos no repositório. É só me dizer o que prefere.
+
 
