@@ -140,20 +140,21 @@ A `TOTP_SECRET` é a única informação que você precisa para gerar os código
 ### `code_generator.py` (exemplo minimal):
 
 ```python
-import os
-import time
+import os, time
 import pyotp
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv()  # carrega .env se existir
+
 secret = os.getenv("TOTP_SECRET")
 if not secret:
-    raise SystemExit("TOTP_SECRET não encontrada. Defina a variável de ambiente ou .env")
+    raise SystemExit("TOTP_SECRET necessária no .env ou variável de ambiente.")
 
 totp = pyotp.TOTP(secret)
 code = totp.now()
 interval = totp.interval
 remaining = interval - (int(time.time()) % interval)
+
 print(f"Código: {code}  (expira em {remaining}s)")
 ```
 
@@ -174,7 +175,7 @@ if not decoded:
 text = decoded[0].data.decode()
 print("URI encontrada:", text)
 
-m = re.search(r"secret=([A-Z2-7]+)", text)
+m = re.search(r"secret=([A-Za-z0-9]+)", text)
 if m:
     secret = m.group(1)
     print("Secret extraída:", secret)
