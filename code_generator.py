@@ -1,4 +1,3 @@
-# arquivo: totp_runner.py
 import os, time
 import pyotp
 from dotenv import load_dotenv
